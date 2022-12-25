@@ -1,0 +1,101 @@
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FRAGMENT</title>
+    <style>
+      /* Add some basic styling */
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      input {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        width: 20%;
+        background-color: #4caf50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      /* Position the QR code in the middle of the page */
+      #qr {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
+      }
+
+      /* Set the background color and text color */
+      body {
+        background-color: #222222;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>QR CODE GENERATOR</h1>
+    <form id="form">
+      <label for="input">Enter text to encode:</label><br>
+      <input type="text" id="input"><br>
+      <button type="submit">Generate QR Code</button>
+    </form>
+
+    <div id="qr"></div>
+
+    <!-- Include the qrcodejs library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script>
+      // Get the form element and the input field
+      var form = document.getElementById("form");
+      var input = document.getElementById("input");
+
+      // When the form is submitted, generate the QR code
+      form.onsubmit = function(event) {
+        event.preventDefault();
+
+        // Get the text to encode from the input field
+        var text = input.value;
+
+        // Remove the previous QR code
+        document.getElementById("qr").innerHTML = "";
+
+        // Create a new QR code object
+        var qr = new QRCode(document.getElementById("qr"), {
+          text: text,
+          width: 256,
+          height: 256,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      };
+    </script>
+  </body>
+</html>
+
+
